@@ -1,4 +1,4 @@
-function Signal_Lab1_Prob6_444 ()
+function Signal_Lab1_Prob6_162 ()
     cprintf('_blue','Generate Matrix X: \n');
     x = [[1:5]' zeros(5,3) [-1:-1:-5]'];
     disp(x);

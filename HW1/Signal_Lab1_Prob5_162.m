@@ -1,4 +1,4 @@
-\   \   function Signal_Lab1_Prob5_444 () 
+   function Signal_Lab1_Prob5_162 () 
     M = [[1:4];[-1:-1:-4];[1:4];[-1:-1:-4]];
 %     ***************************************************************
     cprintf('_blue', 'a) Reflect array (M) left-side right: \n');
