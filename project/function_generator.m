@@ -11,7 +11,7 @@ function signal = function_generator()
     prompt = 'enter number of break point : ';
     break_points = input(prompt);
     
-    prompt = 'enter postion of break points as [1 2 ..] \n: ';
+    prompt = 'enter postion of break points as [1 2 ..] \n:     ';
     positions = input(prompt);
     
     all_points = [start_point positions end_point];
@@ -53,10 +53,10 @@ function signal = function_generator()
                sino_amplitude = sino_inputs(1,1);
                sino_freq = sino_inputs(1,2);
                sino_phase = sino_inputs(1,3);
-               sino_signal =sino_amplitude.*sin(2*pi*sino_freq*current_time + sino_phase);
+               sino_signal =sino_amplitude.*cos(2*pi*sino_freq*current_time + sino_phase);
                signal = [signal sino_signal];
        end
     end
-    
+    disp(Time);
     plot(Time,signal);
 end
