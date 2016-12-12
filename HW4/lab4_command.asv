@@ -1,0 +1,15 @@
+% matlab accept .wav sounds
+% Y = wavread('file.wav') if there's 2 col take only one
+% [Y fs] = wavread('file.wav') fs the freq of sound
+% sound(Y,FS) output the sound vector(make it faster or slower)
+% wavwrite(Y,'newfile.wav') save file after modification
+% f = linspace(-fs/2,fs/2);
+% fm <fs/2  , fs>2fm
+
+% first section :
+% ******************
+t=linspace(0,5,1000);
+y=0.5*cos(60*pi*t)+0.3*sin(80*pi*t);
+Y=fftshift(fft(y));
+Yphase=angle(Y);
+Fvec=linspace
