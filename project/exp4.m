@@ -53,4 +53,4 @@ else
     x2=real(ifft(X));
     audiowrite('ericfinal22.wav',x2,44100);
     plot(f,abs(X))
-    end
+end

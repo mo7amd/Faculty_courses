@@ -17,7 +17,7 @@ function exp2(fs,signal,start_point,end_point,Time)
    %fr1=exp(1j*(2*pi*fs).*t);
    %freq_resp=((1/fs)*conv(y,fr))./fr1;
    %plot_func(freq_resp,fs,t);
-   plot_func(x1,fs,t);
-   plot_func(n,fs,t);
-   plot_func(m,fs,tm);
+   plot_function(x1,fs,t);
+   plot_function(n,fs,t);
+   plot_function(m,fs,tm);
 end

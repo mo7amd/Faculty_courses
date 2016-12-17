@@ -23,19 +23,22 @@ function [signal,start_point,end_point,Time] = exp1(fs)
        Time = [Time current_time];
        
        switch input_signal 
-           case 1%'DC signal'
+           %******************'DC signal'*****************************
+           case 1
                prompt = 'enter the ampilitude: ';
                DC_amplitude = input(prompt);
                DC_signal = DC_amplitude.*ones(1,(all_points(signals+1)-all_points(signals))*fs);
                signal = [signal DC_signal];
-           case 2%'Ramp signal'
+           %******************'Ramp signal'***************************
+           case 2
                prompt = 'enter [slope intercept] : ';
                ramp_inputs = input(prompt);
                slope = ramp_inputs(1,1);
                intercept = ramp_inputs(1,2);
                ramp_signal = current_time.*slope + intercept;
                signal = [signal ramp_signal]; 
-           case 3%'exponintial signal'
+           %*****************'exponintial signal'*********************
+           case 3
                prompt = 'enter [dccomp amplitude exponent] : ';
                exp_inputs = input(prompt);
                dcc= exp_inputs(1,1);
@@ -43,7 +46,8 @@ function [signal,start_point,end_point,Time] = exp1(fs)
                exp_exponent = exp_inputs(1,3);
                exp_signal = dcc+exp_amplitude.*exp(exp_exponent*current_time);
                signal = [signal exp_signal];
-           case 4%'sinsoidal signal'
+           %*****************'sinsoidal signal'***********************
+           case 4
                prompt = 'enter [dccomp amplitude freq phase] : ';
                sino_inputs = input(prompt);
                dcc= sino_inputs(1,1);
@@ -55,5 +59,5 @@ function [signal,start_point,end_point,Time] = exp1(fs)
        end
     end
     
-    plot_func(signal,fs,Time);
+    plot_function(signal,fs,Time);
 end
