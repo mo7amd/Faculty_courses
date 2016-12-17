@@ -18,10 +18,8 @@ function [signal,start_point,end_point,Time] = function_generator(fs)
     disp(break_points);
     for signals=1:break_points+1
        input_signal = menu('Choose a type','DC signal','Ramp signal','exponintial signal','sinsoidal signal'); %input(prompt) 
-       start_signal = all_points(signals);
-       end_signal = all_points(signals+1);
-       NumberOfPoints = (all_points(signals+1)-all_points(signals))*fs;
-       current_time = linspace(start_signal,end_signal,NumberOfPoints);
+       %length_of_signal = all_points(signals+1) - all_points(signals) + 1;
+       current_time = linspace(all_points(signals),all_points(signals+1),(all_points(signals+1)-all_points(signals))*fs);
        Time = [Time current_time];
        
        switch input_signal 
@@ -39,7 +37,7 @@ function [signal,start_point,end_point,Time] = function_generator(fs)
                intercept = ramp_inputs(1,2);
                ramp_signal = current_time.*slope + intercept;
                signal = [signal ramp_signal]; 
-           %****************'exponintial signal'***************
+           %****************'exponintial signal'*************
            case 3
                prompt = 'enter [dccomp amplitude exponent] : ';
                exp_inputs = input(prompt);
@@ -51,15 +49,15 @@ function [signal,start_point,end_point,Time] = function_generator(fs)
            %*****************'sinsoidal signal'***************
            case 4
                prompt = 'enter [dccomp amplitude freq phase] : ';
-               sin_inputs = input(prompt);
-               dcc= sin_inputs(1,1);
-               sin_amplitude = sin_inputs(1,2);
-               sin_freq = sin_inputs(1,3);
-               sin_phase = sin_inputs(1,4);
-               sin_signal =dcc+sin_amplitude.*sin(2*pi*sin_freq*current_time + sin_phase);
-               signal = [signal sin_signal];
+               sino_inputs = input(prompt);
+               dcc= sino_inputs(1,1);
+               sino_amplitude = sino_inputs(1,2);
+               sino_freq = sino_inputs(1,3);
+               sino_phase = sino_inputs(1,4);
+               sino_signal =dcc+sino_amplitude.*sin(2*pi*sino_freq*current_time + sino_phase);
+               signal = [signal sino_signal];
        end
     end
     
-    plot_function(signal,fs,Time);
+    plot_func(signal,fs,Time);
 end
