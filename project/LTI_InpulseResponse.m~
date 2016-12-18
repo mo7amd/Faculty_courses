@@ -1,0 +1,17 @@
+function LTI_InpulseResponse(fs,signal,Time)
+   b=1;
+   a=[1 0.5 0.5];
+   y=filter(b,a,signal);
+   plot_function(y,fs,Time);
+   signal = filter(a,b,y);
+   plot_function(signal,fs,Time);
+   [h1,w] = freqz(b,a,length(signal)); %
+   [h2,w] = freqz(a,b,length(signal)); %
+   plot_function(h1,fs,Time);
+   plot_function(h2,fs,Time);
+   figure;
+   subplot(2,1,1);
+   zplane(b,a);title('stability of first system');
+   subplot(2,1,2);title('stability of ');
+   zplane(a,b);
+end

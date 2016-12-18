@@ -5,6 +5,9 @@ function exp2(fs,signal,start_point,end_point,Time)
    tm=Time;
    fprintf('enter the impulse respnse information:\n');
    [y,t3,t4,~] = exp1(fs);
+   th=linspace(t3,t4,length(y));
+   figure;
+   plot(th,abs(fftshift(fft(y))));
    x=conv(y,m);
    x1=x*(1/fs);
    m = deconv(x,y);
@@ -17,7 +20,7 @@ function exp2(fs,signal,start_point,end_point,Time)
    %fr1=exp(1j*(2*pi*fs).*t);
    %freq_resp=((1/fs)*conv(y,fr))./fr1;
    %plot_func(freq_resp,fs,t);
-   plot_function(x1,fs,t);
-   plot_function(n,fs,t);
-   plot_function(m,fs,tm);
+   plot_func(x1,fs,t);
+   plot_func(n,fs,t);
+   plot_func(m,fs,tm);
 end

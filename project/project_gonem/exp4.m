@@ -19,10 +19,10 @@ if  fs==44100
     plot(f,abs(X))
     figure;
     plot(t1,g);
-    sound(g,fs);
+    %sound(g,fs);
     audiowrite('ericfinal.wav',g,44100);
-    x=x(1:447617);
-    X([183228:223808 223809:264409])=0;
+    x=x(1:length(x));
+    X([(round(length(x)/2)+1)-round(4000*length(x)/fs):round(length(x)/2) round(length(x)/2)+1: round(length(x)/2)+round(4000*length(x)/fs)])=0;
     x2=real(ifft(X));
     audiowrite('ericfinal22.wav',x2,44100);
     plot(f,abs(X))
@@ -45,12 +45,13 @@ else
     plot(f,abs(X))
     figure;
     plot(t1,g);
-    sound(g,fo);
+    %sound(g,fo);
     audiowrite('ericfinal.wav',g,44100);
     audiowrite('ericfinal2.wav',x,44100);
-    x=x(1:447617);
-    X([183228:223808 223809:264409])=0;
+    x=x(1:length(x));
+    X([(round(length(x)/2)+1)-round(4000*length(x)/fs):round(length(x)/2) round(length(x)/2)+1: round(length(x)/2)+round(4000*length(x)/fs)])=0;
+%X([1:183228 264410:447617])=0;
     x2=real(ifft(X));
-    audiowrite('ericfinal22.wav',x2,44100);
+    audiowrite('ericfinal222.wav',x2,44100);
     plot(f,abs(X))
-end
+    end
