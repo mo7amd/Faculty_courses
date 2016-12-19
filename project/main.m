@@ -1,13 +1,12 @@
-function main()
 % welcome to our final project program.
-% this program desing to generate general signal
-% and LTI
-% channel using
-% 1) Difference equations
-% 2) inpulse response
-% to run the program just rub main.m file
-% that will run all functions in nice UI designed by
-% us.
+% this progra generates a general signal
+% and an LTI channel using
+% 1) impulse response
+% 2) Difference equations
+% to run the program just run main.m file
+% that will run all functions in nice UI designed by us.
+
+function main()
 close all;
 clc;
 Loading();
@@ -23,7 +22,7 @@ while true
         case 0
             return;
         case 1
-            sound();
+            sound_wav();
         case 2
             generate_signal();
         otherwise
@@ -45,23 +44,28 @@ end
 function generate_signal()
 while true
     clc;
-    sampleFlage = 1;
-    while sampleFlage
-        cprintf('-comment','enter the sampling freq');
+    sampleFlag = 1;
+    while sampleFlag
+        cprintf('-comment','Enter the sampling frequency');
         prompt = ' : ';
         sampling_freq = input(prompt);
+      if sampling_freq == abs(sampling_freq) 
         prompt = ('Do you want re-enter sampling freq (y/n)? ');
         reEnter = input(prompt,'s');
         if reEnter == 'n' || reEnter == 'N'
-            sampleFlage = 0;
+            sampleFlag = 0;
         end
+      else
+          cprintf('red','Please enter a positive value\n');
+          sampleFlag=1;
+      end
     end
 
-    [signal,start_point,end_point,Time] = function_generator(sampling_freq,'messege signal');
+    [signal,start_point,end_point,Time] = function_generator(sampling_freq,'Message signal');
     
     while true
-    cprintf('-comment','\n\nchoose kind of chaneel : \n');
-    cprintf('*blue',' 1) LTI channel "inpulse response"\n 2) LTI "DE"\n');
+    cprintf('-comment','\n\nChoose kind of channel : \n');
+    cprintf('*blue',' 1) LTI channel "impulse response"\n 2) LTI Channel "DE"\n');
     cprintf('*red',' 0) to exit\n');
     prompt = ' : ';
     TypeOfChannel = input(prompt);
@@ -70,7 +74,7 @@ while true
             clc;
             return;
         case 1
-            LTI_InpulseResponse(sampling_freq,signal,start_point,end_point,Time);
+            LTI_ImpulseResponse(sampling_freq,signal,start_point,end_point,Time);
             clc;
         case 2
             LTI_DE(sampling_freq,signal,Time);
@@ -81,4 +85,3 @@ while true
     end
 end
 end
-

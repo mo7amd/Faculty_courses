@@ -1,15 +1,14 @@
 function [signal,start_point,end_point,Time] = function_generator(fs,title)
-    cprintf('*comment','enter [StartPoint EndPoint NumberOfBreakPoint]\n');
+    cprintf('*comment','Enter [ StartPoint EndPoint Number_Of_BreakPoint ]\n');
     prompt = ' : ';
     points = input(prompt);
-    
     start_point = points(1,1);
     end_point = points(1,2);
     break_points = points(1,3);
     if ~break_points
         positions = end_point;
     else    
-    prompt = 'enter postion of break points as [1 2 ..] \n:     ';
+    prompt = 'enter postion of break points as [ 1 2 .. ] \n:     ';
     positions = input(prompt);
     end
     
@@ -19,7 +18,7 @@ function [signal,start_point,end_point,Time] = function_generator(fs,title)
     Time = [];
     for signals=1:break_points+1
         SignalFlag = 1;
-        while SignalFlag == 1
+    while SignalFlag == 1
 %        input_signal = menu('Choose a type','DC signal','Ramp signal','exponintial signal','sinsoidal signal'); 
        cprintf('-comment','Choose type of signal ');
        fprintf('%d',signals);
@@ -33,13 +32,13 @@ function [signal,start_point,end_point,Time] = function_generator(fs,title)
        switch input_signal 
            %******************'DC signal'*****************************
            case 1
-               prompt = 'enter the ampilitude: ';
+               prompt = 'Enter the ampilitude: ';
                DC_amplitude = input(prompt);
                DC_signal = DC_amplitude.*ones(1,(all_points(signals+1)-all_points(signals))*fs);
                signal = [signal DC_signal];
            %******************'Ramp signal'***************************
            case 2
-               prompt = 'enter [slope intercept] : ';
+               prompt = 'Enter [slope intercept] : ';
                ramp_inputs = input(prompt);
                slope = ramp_inputs(1,1);
                intercept = ramp_inputs(1,2);
@@ -47,7 +46,7 @@ function [signal,start_point,end_point,Time] = function_generator(fs,title)
                signal = [signal ramp_signal]; 
            %*****************'exponintial signal'*********************
            case 3
-               prompt = 'enter [dccomp amplitude exponent time_shift] : ';
+               prompt = 'Enter [DC_component  amplitude  exponent  Time_shift] : ';
                exp_inputs = input(prompt);
                dcc= exp_inputs(1,1);
                exp_amplitude = exp_inputs(1,2);
@@ -57,7 +56,7 @@ function [signal,start_point,end_point,Time] = function_generator(fs,title)
                signal = [signal exp_signal];
            %*****************'sinsoidal signal'***********************
            case 4
-               prompt = 'enter [dccomp amplitude freq phase] : ';
+               prompt = 'Enter [DC_component amplitude freq   phase] : ';
                sino_inputs = input(prompt);
                dcc= sino_inputs(1,1);
                sin_amplitude = sino_inputs(1,2);
@@ -66,7 +65,7 @@ function [signal,start_point,end_point,Time] = function_generator(fs,title)
                sin_signal =dcc+sin_amplitude.*sin(2*pi*sin_freq*current_time + sin_phase);
                signal = [signal sin_signal];
        end
-       prompt = 'Do you want re-Enter the past signal (y/n) ? ';
+       prompt = 'Do you want re-enter the past signal (y/n) ? ';
        ReEnter = input(prompt,'s');
        if ReEnter == 'n' || ReEnter == 'N' 
            SignalFlag=0;
